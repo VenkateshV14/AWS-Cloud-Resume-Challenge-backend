@@ -1,0 +1,28 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+terraform.tfstate
+terraform.tfstate.backup
+
+# Crash log files
+crash.log
+
+# Terraform provider-specific files
+.terraform/
+.terraform.lock.hcl
+
+# Variables files (if storing secrets)
+*.auto.tfvars
+*.tfvars
+
+# Ignore IDE and OS-specific files
+*.DS_Store
+.idea/
+.vscode/
+*.log
+*.bak
+
+# Ignore any archive or compiled files
+*.zip
+*.tar.gz
+*.out

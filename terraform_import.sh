@@ -5,7 +5,6 @@ set -e  # Exit immediately if any command fails
 # Note: We now include the DynamoDB item and use the RouteId and Stage name from your outputs.
 declare -A resources=(
     ["aws_dynamodb_table.visitor_counter"]="visitorCounter"
-    ["aws_dynamodb_table_item.visitor_counter_item"]="visitorCounter/counter"
     ["aws_iam_role.lambda_role"]="lambda_dynamodb_role"
     ["aws_iam_policy.dynamodb_policy"]="arn:aws:iam::442042539767:policy/LambdaDynamoDBPolicy"
     ["aws_apigatewayv2_api.visitor_api"]="x99v98x8s9"

@@ -1,28 +1,29 @@
-# Terraform state files
-*.tfstate
-*.tfstate.backup
+# Terraform files
 terraform.tfstate
 terraform.tfstate.backup
-
-# Crash log files
-crash.log
-
-# Terraform provider-specific files
 .terraform/
 .terraform.lock.hcl
 
-# Variables files (if storing secrets)
-*.auto.tfvars
-*.tfvars
+# Python virtual environments
+venv/
+.env/
+__pycache__/
+*.pyc
 
-# Ignore IDE and OS-specific files
-*.DS_Store
-.idea/
-.vscode/
-*.log
-*.bak
-
-# Ignore any archive or compiled files
+# Dependency files
 *.zip
 *.tar.gz
-*.out
+requirements.txt.lock
+
+# AWS credentials & sensitive files
+.aws/
+*.pem
+*.key
+
+# Logs & system files
+*.log
+.DS_Store
+
+# VSCode & JetBrains settings
+.vscode/
+.idea/

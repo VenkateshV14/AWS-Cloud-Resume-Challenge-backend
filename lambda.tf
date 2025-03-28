@@ -12,4 +12,8 @@ resource "aws_lambda_function" "visitor_counter_lambda" {
       TABLE_NAME = aws_dynamodb_table.visitor_counter.name
     }
   }
+
+  lifecycle {
+    ignore_changes = [source_code_hash, filename] # Avoid unnecessary redeployments
+  }
 }

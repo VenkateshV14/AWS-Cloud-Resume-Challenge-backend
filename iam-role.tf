@@ -41,4 +41,8 @@ EOF
 resource "aws_iam_role_policy_attachment" "attach_policy" {
   policy_arn = aws_iam_policy.dynamodb_policy.arn
   role       = aws_iam_role.lambda_role.name
+
+  lifecycle {
+    ignore_changes = [policy_arn]
+  }
 }

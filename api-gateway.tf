@@ -14,9 +14,14 @@ resource "aws_apigatewayv2_route" "visitor_route" {
 }
 
 resource "aws_apigatewayv2_integration" "lambda_integration" {
-  api_id           = aws_apigatewayv2_api.visitor_api.id
-  integration_type = "AWS_PROXY"
-  integration_uri  = aws_lambda_function.visitor_counter_lambda.invoke_arn
+  api_id                 = aws_apigatewayv2_api.visitor_api.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.visitor_counter_lambda.invoke_arn
+  payload_format_version = "1.0"
+
+  lifecycle {
+    ignore_changes = [integration_uri]
+  }
 }
 
 resource "aws_lambda_permission" "apigateway_permission" {

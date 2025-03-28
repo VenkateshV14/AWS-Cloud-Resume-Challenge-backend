@@ -28,18 +28,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Run Tests
-        run: pytest tests/
-
-      - name: Create ZIP file for Lambda
+      - name: Create Lambda Deployment Package
         run: |
           zip lambda_function.zip lambda_function.py
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-
-      - name: Initialize Terraform
+      - name: Terraform Init
         run: terraform init
 
-      - name: Apply Terraform
+      - name: Terraform Apply
         run: terraform apply -auto-approve

@@ -15,8 +15,7 @@ resource "aws_dynamodb_table" "visitor_counter" {
 
 resource "aws_dynamodb_table_item" "visitor_counter_item" {
   table_name = aws_dynamodb_table.visitor_counter.name
-
-  hash_key = "id"
+  hash_key   = "id"
 
   item = <<ITEM
 {
@@ -24,5 +23,10 @@ resource "aws_dynamodb_table_item" "visitor_counter_item" {
   "visits": {"N": "0"}
 }
 ITEM
+
+  lifecycle {
+    ignore_changes = [item] # Prevent overwriting the item
+  }
 }
+
 

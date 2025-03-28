@@ -30,3 +30,22 @@ jobs:
 
       - name: Run Tests
         run: pytest tests/
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
+
+      - name: Create ZIP file for Lambda
+        run: |
+          zip lambda_function.zip lambda_function.py
+
+      - name: Upload ZIP file to AWS Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name visitorCounterLambda \
+            --zip-file fileb://lambda_function.zip

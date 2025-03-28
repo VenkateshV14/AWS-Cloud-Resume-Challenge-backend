@@ -5,7 +5,9 @@ set -e  # Exit immediately if any command fails
 declare -A resources=(
     ["aws_dynamodb_table.visitor_counter"]="visitorCounter"
     ["aws_iam_role.lambda_role"]="lambda_dynamodb_role"
-    ["aws_apigatewayv2_api.visitor_api"]="zp9g72q3uc"  # Replace with actual API ID if needed
+    ["aws_iam_policy.dynamodb_policy"]="arn:aws:iam::442042539767:policy/LambdaDynamoDBPolicy"  # Double-check policy name
+    ["aws_apigatewayv2_api.visitor_api"]="x99v98x8s9"  # Replace with actual API ID
+    ["aws_apigatewayv2_stage.default"]="x99v98x8s9/$default"  # Ensure "$default" is the correct stage name
     ["aws_lambda_function.visitor_counter_lambda"]="VisitorCounterFunction"
 )
 

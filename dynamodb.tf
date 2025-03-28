@@ -13,20 +13,17 @@ resource "aws_dynamodb_table" "visitor_counter" {
   }
 }
 
-resource "aws_dynamodb_table_item" "visitor_counter_item" {
-  table_name = aws_dynamodb_table.visitor_counter.name
-  hash_key   = "id"
+resource "null_resource" "initialize_dynamodb_item" {
+  depends_on = [aws_dynamodb_table.visitor_counter]
 
-  item = <<ITEM
-{
-  "id": {"S": "counter"},
-  "visits": {"N": "0"}
-}
-ITEM
-
-  lifecycle {
-    ignore_changes = [item] # Prevent overwriting the item
+  provisioner "local-exec" {
+    command = <<EOT
+      ITEM_EXISTS=$(aws dynamodb get-item --table-name visitorCounter --key '{"id": {"S": "counter"}}' --query "Item" --output text)
+      if [ "$ITEM_EXISTS" = "None" ]; then
+        aws dynamodb put-item --table-name visitorCounter --item '{"id": {"S": "counter"}, "visits": {"N": "0"}}'
+      else
+        echo "Item already exists, skipping creation."
+      fi
+    EOT
   }
 }
-
-

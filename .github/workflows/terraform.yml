@@ -35,7 +35,6 @@ jobs:
 
       - name: Zip Lambda Function
         run: |
-          cd backend-terraform
           zip lambda_function.zip lambda_function.py
 
       - name: Set up Terraform

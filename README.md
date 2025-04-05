@@ -25,6 +25,7 @@ backend-terraform/
 ├── test/
 │   └── test_lambda.py     # Pytest unit test
 └── .gitignore             # Files to ignore in git
+└── .images                # screenshots
 ```
 
 ## 🧪 Testing
@@ -38,6 +39,15 @@ source venv/bin/activate
 # Run pytest
 pytest tests/
 ```
+
+## 🚀 How it Works
+
+1. Frontend makes a **GET** request to `/visitor-count`.
+2. API Gateway forwards the request to Lambda.
+3. Lambda fetches the count from DynamoDB, increments, and updates it.
+4. The new count is returned and shown on the frontend.
+
+
 ### 1. Lambda Function 
 Lambda function that reads, updates, and returns the visitor count from DynamoDB.
 
@@ -71,25 +81,6 @@ Screenshot showing successful infrastructure deployment using `terraform apply`.
 
 ![Terraform CLI](images/terraform_cli.JPG)
 
----
-
-## 🚀 How it Works
-
-1. Frontend makes a **GET** request to `/visitor-count`.
-2. API Gateway forwards the request to Lambda.
-3. Lambda fetches the count from DynamoDB, increments, and updates it.
-4. The new count is returned and shown on the frontend.
-
----
-
-## 🔧 Tech Stack
-
-- AWS Lambda
-- DynamoDB
-- API Gateway
-- Terraform
-- Python
----
 
 ## ⚙️ Deployment (Terraform)
 
@@ -106,12 +97,4 @@ Once deployed, you’ll get:
 - A DynamoDB table named `visitorCounter`
 - A Lambda function that updates and returns the visitor count
 
-## 🔐 Security Notes
-
-- The Lambda IAM role has limited permissions: only `dynamodb:UpdateItem` on the `visitorCounter` table.
-- `.gitignore` ensures sensitive files (like `.pem`, AWS credentials, etc.) are excluded.
-
----
-
-Let me know if you want to include GitHub badges, Terraform output examples, or deployment screenshots!
 

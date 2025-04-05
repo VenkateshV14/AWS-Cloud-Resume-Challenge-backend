@@ -2,6 +2,7 @@ import json
 import boto3
 from decimal import Decimal
 
+os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table("visitorCounter")
 

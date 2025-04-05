@@ -1,19 +1,11 @@
-resource "aws_lambda_function" "visitor_counter_lambda" {
-  filename      = "lambda_function.zip"
-  function_name = "VisitorCounterFunction"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "lambda_function.lambda_handler"
-  runtime       = "python3.10"
-
+resource "aws_lambda_function" "visitor_counter" {
+  function_name    = var.lambda_function_name
+  filename         = "lambda_function.zip"
   source_code_hash = filebase64sha256("lambda_function.zip")
+  handler          = "lambda_function.lambda_handler"
+  runtime          = "python3.11"
+  role             = aws_iam_role.lambda_exec_role.arn
 
-  environment {
-    variables = {
-      TABLE_NAME = aws_dynamodb_table.visitor_counter.name
-    }
-  }
-
-  lifecycle {
-    ignore_changes = [source_code_hash, filename] # Avoid unnecessary redeployments
-  }
+  timeout = 10
 }
+

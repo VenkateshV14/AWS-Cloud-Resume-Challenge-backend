@@ -7,19 +7,25 @@ table = dynamodb.Table("visitorCounter")
 
 
 def lambda_handler(event, context):
-    response = table.get_item(Key={"id": "counter"})
+    try:
+        # Atomically increment the visit count
+        response = table.update_item(
+            Key={"id": "counter"},
+            UpdateExpression="ADD visits :inc",
+            ExpressionAttributeValues={":inc": Decimal(1)},
+            ReturnValues="UPDATED_NEW",
+        )
 
-    if "Item" in response:
-        visits = int(response["Item"]["visits"]) + 1
-    else:
-        visits = 1
+        # Extract the updated count
+        visits = int(response["Attributes"]["visits"])
 
-    table.put_item(Item={"id": "counter", "visits": Decimal(visits)})
+        return {
+            "statusCode": 200,
+            "headers": {"Access-Control-Allow-Origin": "*"},
+            "body": json.dumps(
+                {"visits": visits, "message": "Counter updated successfully"}
+            ),
+        }
 
-    return {
-        "statusCode": 200,
-        "headers": {"Access-Control-Allow-Origin": "*"},
-        "body": json.dumps(
-            {"visits": visits, "message": "Counter updated successfully"}
-        ),
-    }
+    except Exception as e:
+        return {"statusCode": 500, "body": json.dumps({"error": str(e)})}

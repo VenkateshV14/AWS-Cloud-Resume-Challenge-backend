@@ -1,5 +1,6 @@
 import json
 import boto3
+import os
 from decimal import Decimal
 
 os.environ["AWS_DEFAULT_REGION"] = "us-east-1"

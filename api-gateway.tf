@@ -2,6 +2,10 @@
 resource "aws_apigatewayv2_api" "visitor_api" {
   name          = var.apigateway_name
   protocol_type = "HTTP"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Integration with Lambda

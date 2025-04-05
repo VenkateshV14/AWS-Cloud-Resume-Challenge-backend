@@ -93,7 +93,7 @@ terraform plan
 terraform apply
 ```
 
-Once deployed:
+Once deployed, we'll get:
 - An API Gateway Invoke URL
 - A DynamoDB table named `visitorCounter`
 - A Lambda function that updates and returns the visitor count

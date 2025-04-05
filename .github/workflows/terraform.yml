@@ -51,8 +51,6 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: backend-terraform
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: backend-terraform

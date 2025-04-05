@@ -25,7 +25,8 @@ backend-terraform/
 ├── test/
 │   └── test_lambda.py     # Pytest unit test
 └── .gitignore             # Files to ignore in git
-└── .images                # screenshots
+└── images/                # screenshots
+└── README.md              # Explanation
 ```
 
 ## 🧪 Testing

@@ -3,7 +3,7 @@ name: Backend Terraform Deploy
 on:
   push:
     paths:
-      - "**.tf"
+      - "**/*.tf"
       - "lambda_function.py"
       - ".github/workflows/terraform.yml"
   workflow_dispatch:

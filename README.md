@@ -22,7 +22,7 @@ backend-terraform/
 ├── variables.tf           # Input variables
 ├── outputs.tf             # Terraform outputs
 ├── lambda_function.py     # Lambda function code
-├── test/
+├── test
 │   └── test_lambda.py     # Pytest unit test
 └── .gitignore             # Files to ignore in git
 └── requirements.txt       # All Dependencies

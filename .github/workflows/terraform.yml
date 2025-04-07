@@ -24,13 +24,23 @@ jobs:
       - name: 🧰 Set up Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: ✅ Verify AWS CLI
-        run: aws --version
-
       - name: 📦 Zip Lambda function
-        run: zip lambda_function.zip lambda_function.py
+        run: |
+          zip lambda_function.zip lambda_function.py
 
       - name: 🔁 Import and Apply Terraform
         run: |
           chmod +x terraform-import.sh
           ./terraform-import.sh
+
+      - name: 🔐 Allow API Gateway to invoke Lambda
+        run: |
+          aws lambda add-permission \
+            --function-name visitorCounterFunction \
+            --statement-id allow-apigw \
+            --action lambda:InvokeFunction \
+            --principal apigateway.amazonaws.com \
+            --source-arn arn:aws:execute-api:us-east-1:442042539767:9l2tv5xuna/*/*/count || echo "Permission might already exist, skipping."
+
+      - name: 🚀 Terraform Apply
+        run: terraform apply -auto-approve

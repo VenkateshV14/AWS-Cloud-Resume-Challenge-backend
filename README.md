@@ -101,15 +101,9 @@ A REST API route `/visitor-count` configured to trigger the Lambda function.
 ### 4. API Gateway Invoke URL
 Base URL to trigger the Lambda function via HTTP request.
 
-![Invoke URL](images/invoke_url.JPG)
+![Invoke URL](images/stages.JPG)
 
 ---
-
-### 5. Terraform Apply CLI Output
-Screenshot showing successful infrastructure deployment using `terraform apply`.
-
-![Terraform CLI](images/terraform_cli.JPG)
-
 
 Once deployed, we'll get:
 - An API Gateway Invoke URL

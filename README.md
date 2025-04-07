@@ -71,7 +71,7 @@ terraform apply
 
 ## 🚀 How it Works
 
-1. Frontend makes a **GET** request to `/visitor-count`.
+1. Frontend makes a **GET** request to `/visitorCoounterApi`.
 2. API Gateway forwards the request to Lambda.
 3. Lambda fetches the count from DynamoDB, increments, and updates it.
 4. The new count is returned and shown on the frontend.

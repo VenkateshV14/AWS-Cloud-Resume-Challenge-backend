@@ -25,7 +25,7 @@ def lambda_handler(event, context):
             "statusCode": 200,
             "headers": {"Access-Control-Allow-Origin": "*"},
             "body": json.dumps(
-                {"visits": visits, "message": "Counter updated successfully"}
+                {"visits": visits, "message": "Counter updated successfully...!!"}
             ),
         }
 

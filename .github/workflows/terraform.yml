@@ -28,7 +28,7 @@ jobs:
         run: |
           zip lambda_function.zip lambda_function.py
 
-      - name: 🔁 Import and Apply Terraform
+      - name: 🔁 Import all existing resources
         run: |
           chmod +x terraform-import.sh
           ./terraform-import.sh

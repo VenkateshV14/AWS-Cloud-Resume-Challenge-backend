@@ -8,6 +8,7 @@ This is the backend infrastructure and logic for the [Cloud Resume Challenge](ht
 - **API Gateway (HTTP)** – Front-door for the Lambda function
 - **DynamoDB** – NoSQL DB to store the visitor count
 - **Terraform** – Infrastructure as Code
+- **GitHub Actions** – CI/CD pipeline for automatic deployment
 - **Pytest** – Python unit testing for Lambda
 
 ## 🗂️ Project Structure
@@ -26,10 +27,26 @@ backend-terraform/
 │   └── test_lambda.py     # Pytest unit test
 └── .gitignore             # Files to ignore in git
 └── requirements.txt       # All Dependencies
+└── terrafrom-import.sh    # imports all existing resources
 └── images/                # screenshots
 └── README.md              # Explanation
 
 ```
+---
+
+## 🔁 CI/CD – GitHub Actions
+
+A GitHub Actions workflow automates the Terraform deployment:
+
+- Triggered when `.tf`, `lambda_function.py`, or the workflow itself changes.
+- Automatically zips and deploys the Lambda function.
+- Runs `terraform-import.sh` to import existing resources (DynamoDB, API Gateway, Lambda) if needed.
+- Adds permission for API Gateway to invoke Lambda.
+- Applies changes using `terraform apply`.
+
+No duplicated resources—fully idempotent and production-safe!
+
+---
 
 ## 🧪 Testing
 
@@ -41,6 +58,15 @@ source venv/bin/activate
 
 # Run pytest
 pytest tests/
+```
+## ⚙️ Deployment (Terraform)
+
+Initialize and deploy the infrastructure:
+
+```bash
+terraform init
+terraform plan
+terraform apply
 ```
 
 ## 🚀 How it Works
@@ -85,19 +111,16 @@ Screenshot showing successful infrastructure deployment using `terraform apply`.
 ![Terraform CLI](images/terraform_cli.JPG)
 
 
-## ⚙️ Deployment (Terraform)
-
-Initialize and deploy the infrastructure:
-
-```bash
-terraform init
-terraform plan
-terraform apply
-```
-
 Once deployed, we'll get:
 - An API Gateway Invoke URL
 - A DynamoDB table named `visitorCounter`
 - A Lambda function that updates and returns the visitor count
+
+💡 Notes
+The backend resources were deleted and re-imported cleanly using terraform-import.sh.
+
+Terraform state is kept clean with no duplicated resources.
+
+GitHub Actions ensures updates happen only on changes to .tf files or lambda_function.py.
 
 

@@ -24,9 +24,17 @@ jobs:
       - name: 🧰 Set up Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: 📦 Zip Lambda function
+      - name: ☁️ Install AWS CLI
         run: |
-          zip lambda_function.zip lambda_function.py
+          sudo apt-get update
+          sudo apt-get install -y unzip curl
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+          aws --version
+
+      - name: 📦 Zip Lambda function
+        run: zip lambda_function.zip lambda_function.py
 
       - name: 🔁 Import and Apply Terraform
         run: |

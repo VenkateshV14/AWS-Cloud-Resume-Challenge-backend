@@ -28,4 +28,8 @@ terraform import aws_apigatewayv2_integration.lambda_integration 9l2tv5xuna/3428
 echo "⏳ Attempting to import aws_apigatewayv2_route.get_count_route..."
 terraform import aws_apigatewayv2_route.get_count_route 9l2tv5xuna/ivag6bt
 
+echo "⏳ Attempting to import aws_lambda_permission.apigw_lambda..."
+terraform import aws_lambda_permission.apigw_lambda visitorCounterFunction/AllowHttpApiInvoke
+
+
 echo "✅ All resources imported successfully!"

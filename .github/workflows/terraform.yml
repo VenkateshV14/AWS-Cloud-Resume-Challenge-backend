@@ -5,7 +5,7 @@ on:
     paths:
       - "**.tf"
       - "lambda_function.py"
-      - ".github/workflows/backend.yml"
+      - ".github/workflows/terraform.yml"
   workflow_dispatch:
 
 jobs:

@@ -1,6 +1,6 @@
 # Cloud Resume Challenge – Backend
 
-This is the backend infrastructure and logic for the [Cloud Resume Challenge](https://cloudresumechallenge.dev/). It handles a visitor counter using AWS services like Lambda, API Gateway, and DynamoDB — all defined and deployed using Terraform.
+This is the backend infrastructure and logic for the [Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/). It handles a visitor counter using AWS services like Lambda, API Gateway, and DynamoDB — all defined and deployed using Terraform.
 
 ## 🚀 Tech Stack
 
